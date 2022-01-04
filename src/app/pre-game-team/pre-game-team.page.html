@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Configuration de la partie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Nombre d'équipe</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="display: flex;  flex-direction: column; justify-content: center; text-align: center;">
+      <h1>{{nbr_team}}</h1>
+      <div style="display: flex; justify-content: center;">
+        <ion-button  (click)="onClick_plus()" expand="block"  shape="round">
+          <h1 style="font-weight: bold; font-size: 2em;">+</h1>
+        </ion-button>
+        <ion-button (click)="onClick_minus()" expand="block"  shape="round">
+          <h1 style="font-weight: bold; font-size: 2.5em;">-</h1>
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card  *ngFor="let p of joueurs; let k = index">
+    <ion-card-header>
+      <ion-card-subtitle>Equipe {{k+1}}</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+   
+      <div>
+        <ion-chip *ngFor="let j of joueurs[k] ; let i = index">
+
+          <ion-label>{{j.name}}</ion-label>
+          <ion-icon name="close-circle" (click)="delete_player(j)"></ion-icon>
+        </ion-chip>
+        
+        
+      </div>
+      <div class="add_player">
+        <ion-item>
+          <ion-input id="input" [(ngModel)]="name" placeholder="Nom du joueur" clearOnEdit></ion-input>
+        </ion-item>
+        <ion-fab horizontal="end" >
+          <ion-fab-button (click)="add_player(k)">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card >
+    <ion-card-header>
+      <ion-card-subtitle>Nombre de questions</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-segment scrollable (ionChange)="segmentChanged($event)" value="heart">
+        <ion-segment-button value=20>
+          <h2>20</h2>
+        </ion-segment-button>
+        <ion-segment-button value=40>
+          <h2>40</h2>
+        </ion-segment-button>
+        <ion-segment-button value=60>
+          <h2>60</h2>
+        </ion-segment-button>
+        <ion-segment-button value=80>
+          <h2>80</h2>
+        </ion-segment-button>
+        <ion-segment-button value=100>
+          <h2>100</h2>
+        </ion-segment-button>
+      </ion-segment>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div style="display: flex;flex-direction: column; align-items: center; justify-content: center; align-items: center" >
+  <ion-button *ngIf="condition()==false" color="success" disabled>Jouer</ion-button>
+  <ion-button *ngIf="condition()==true" color="success" [routerLink]="['/game']" routerLinkActive="router-link-active"  (click)="next()">Jouer</ion-button>
+    </div>
+</ion-content>

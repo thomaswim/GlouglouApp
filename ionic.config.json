@@ -1,0 +1,10 @@
+{
+  "name": "glouglou",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {
+      "enabled": false
+    }
+  },
+  "type": "angular"
+}

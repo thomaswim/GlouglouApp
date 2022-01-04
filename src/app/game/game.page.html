@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+
+    <ion-title>Game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="index_question <= nbr_questions" style="height: 100%; display: flex;flex-direction: column; align-items: center; justify-content: center;">
+  <ion-card  class="card">
+    <ion-card-header>
+      <ion-card-subtitle>{{index_question}}/{{nbr_questions}}</ion-card-subtitle>
+      <ion-card-title>{{questions_var[index_question-1].theme}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{questions_var[index_question-1].question}}
+    </ion-card-content>
+  </ion-card>
+  <ion-button color="success" (click)="next()">Suivant</ion-button>
+</div>
+
+<div *ngIf="index_question > nbr_questions" style="height: 100%; display: flex;flex-direction: column; align-items: center; justify-content: center;">
+  <ion-card  class="card">
+    <ion-card-header>
+      <ion-card-subtitle>FINITO</ion-card-subtitle>
+      <ion-card-title>PIPO</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      
+    </ion-card-content>
+  </ion-card>
+  <ion-button [routerLink]="['/']" router-direction="back">Retour</ion-button>
+</div>
+
+</ion-content>

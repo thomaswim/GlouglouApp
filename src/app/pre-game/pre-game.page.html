@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Configuration de la partie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card >
+    <ion-card-header>
+      <ion-card-subtitle>Séléction des joueurs</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+   
+      <div>
+        <ion-chip *ngFor="let j of joueurs ; let i = index">
+
+          <ion-label>{{j.name}}</ion-label>
+          <ion-icon name="close-circle" (click)="delete_player(j)"></ion-icon>
+        </ion-chip>
+        
+        
+      </div>
+      <div class="add_player">
+        <ion-item>
+          <ion-input id="input" [(ngModel)]="name" placeholder="Nom du joueur" clearOnEdit></ion-input>
+        </ion-item>
+        <ion-fab horizontal="end" >
+          <ion-fab-button (click)="add_player()">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card >
+    <ion-card-header>
+      <ion-card-subtitle>Nombre de questions</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-segment scrollable (ionChange)="segmentChanged($event)" value="heart">
+        <ion-segment-button value=20>
+          <h2>20</h2>
+        </ion-segment-button>
+        <ion-segment-button value=40>
+          <h2>40</h2>
+        </ion-segment-button>
+        <ion-segment-button value=60>
+          <h2>60</h2>
+        </ion-segment-button>
+        <ion-segment-button value=80>
+          <h2>80</h2>
+        </ion-segment-button>
+        <ion-segment-button value=100>
+          <h2>100</h2>
+        </ion-segment-button>
+      </ion-segment>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+
+      <ion-card  id="c" (click)="style('c',1)">
+        <ion-card-title>Soft</ion-card-title>
+        <ion-card-content>
+          Pour un début d'apero entre amis
+        </ion-card-content>
+      </ion-card>
+      <ion-card  id="b" (click)="style('b',2)">
+        <ion-card-title  >Medium</ion-card-title>
+        <ion-card-content>
+          Pour se mettre bien bien ...
+        </ion-card-content>
+      </ion-card>
+      <ion-card  id="a" (click)="style('a',3)">
+       
+        <ion-card-title>Hot</ion-card-title>
+        <ion-card-content>
+          Tout peux arriver ici... 
+        </ion-card-content>
+      </ion-card>
+ 
+  </ion-card>
+
+  <div style="display: flex;flex-direction: column; align-items: center; justify-content: center; align-items: center" >
+  <ion-button *ngIf="joueurs.length < 3 || nbr_questions == 0 || mode_select.length == 0" color="success" disabled>Jouer</ion-button>
+  <ion-button *ngIf="joueurs.length >= 3 && nbr_questions != 0 && mode_select.length >0" color="success" [routerLink]="['/game']" routerLinkActive="router-link-active"  (click)="next()">Jouer</ion-button>
+    </div>
+</ion-content>

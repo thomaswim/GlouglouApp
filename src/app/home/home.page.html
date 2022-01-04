@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      GlouGlou
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">GlouGlou</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+        <ion-list id="inbox-list" *ngFor="let p of Pages ; let i = index">
+          <ion-card routerDirection="root" [routerLink]="[p.url]"detail="false" routerLinkActive="selected"> 
+            <ion-card-subtitle> </ion-card-subtitle>
+            <ion-card-title>{{ p.title }}</ion-card-title>
+            <ion-card-content>
+              {{p.sub}}
+            </ion-card-content>
+          </ion-card>
+    
+      </ion-list>
+  </div>
+</ion-content>
