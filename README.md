@@ -1,7 +1,7 @@
 # GlouglouApp
 
 
-#Rappel Git
+# Rappel Git
 
 echo "# GlouglouApp" >> README.md
 git init
